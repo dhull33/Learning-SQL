@@ -11,4 +11,88 @@ Import some data
 Before getting into writing queries, we first need to load some data. We're going to use the mtcars dataset that is often used in R and Python examples. If you need a copy of the .csv, it can be downloaded here, and it may be a good idea to familiarize yourself with the data a bit before proceeding. Also, be sure that all columns have a name. Once you have the data, put it in the same directory as this notebook. Now open up a command prompt in your OS, navigate to the directory containing the data, and run the command sqlite3. You should now see a sqlite3> indicating that the server is running and ready for commands. Now enter the following into the sqlite3 console.
 
       .mode csv
-      .import mtcars.csv mtcars
+      .import /Users/davidhull/Desktop/mtcars.csv mtcars
+      
+Now lets select 10 columns from the dataset mtcars: 
+
+      SELECT * FROM mtcars LIMIT 10; 
+      
+   The * is the "wildcard" character and can be read as "all" in this context. 
+   FROM species which table (mtcars) we are slecting from
+   LIMIT allows you to specify the number of rows you want to include.
+   In english the statement reads, "select all columns from table mtcars limited to 10 rows."
+   
+   
+But this doesn't include the headers. So to add the deaders we run: 
+
+      .mode columns
+      .headers on 
+      
+      SELECT * FROM mtcars LIMIT 10; 
+  
+To order the data we run: 
+      
+      SELECT * FROM mtcats ORDER BY mpg DESC LIMIT 10; 
+      
+Notice that for ORDER BY we had to specify the column we wanted to sort on as well as DESC which stands for decending               since the default in SQLite is ascending order. Often we are not interested in all the columns in the data, so we just need to specify to SELECT which ones we are interested in.
+
+We can also specify which variables to choose: 
+
+      SELECT name, cyl, hp, wt, mpg FROM mtcars ORDER BY mpg DESC LIMIT 10;
+      
+Say we want to know hp, wt, mpg for 6 cylinder vehicles:
+      SELECT name, cyl, hp, wt, mpg
+      FROM mtcars
+      WHERE cyl = 6
+      ORDER BY mpg DESC
+      LIMIT 10; 
+   
+      Notice that here we will break our query accross several lines. This can be still copy and pasted into the sqlite3      console as long as the statement is terminated with a ;.
+
+The where clause uses most of the conditional operators you are familiar with (>, <, !=, etc...) For a full list, consult the       documentation. We can also apply multiple filters in the same WHERE clause. For example:
+
+      SELECT name, cyl, hp, wt, mpg 
+      FROM mtcars 
+      WHERE cyl = 6 AND mpg >= 20
+      ORDER BY mpg DESC 
+      LIMIT 10;
+      
+       Note that SQLite does not use the & or | operators you may be familiar with coming from a programming background.                  Another useful keyword, especially for data science, is CASE which can be used to code certain classes of rows:
+       
+            SELECT name, cyl, hp, wt, mpg,
+                CASE WHEN mpg < 15 THEN 'low'
+                     WHEN mpg < 20 THEN 'med'
+                     WHEN mpg > 20 THEN 'high'
+                END
+                     AS class
+           FROM mtcars  
+           LIMIT 10;
+           
+   Note that AS is used to name objects in SQL. For example AS renames the column 'names' to 'car'
+       
+       
+            SELECT name AS car, cyl, hp, wt, mpg,
+                CASE WHEN mpg < 15 THEN 'low'
+                     WHEN mpg < 20 THEN 'med'
+                     WHEN mpg > 20 THEN 'high'
+                END
+                     AS class
+            FROM mtcars  
+            LIMIT 10;
+
+
+Left off at GROUP BY and Aggregate Functions
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
