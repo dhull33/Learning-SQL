@@ -81,7 +81,7 @@ The where clause uses most of the conditional operators you are familiar with (>
             LIMIT 10;
 
 
-Left off at GROUP BY and Aggregate Functions
+Left off at GROUP BY and Aggregate Functions pu2
 
 
 
