@@ -23,7 +23,7 @@ Now lets select 10 columns from the dataset mtcars:
    In english the statement reads, "select all columns from table mtcars limited to 10 rows."
    
    
-But this doesn't include the headers. So to add the deaders we run: kty
+But this doesn't include the headers. So to add the deaders we run: kty pu
 
       .mode columns
       .headers on 
