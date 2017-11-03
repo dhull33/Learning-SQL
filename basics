@@ -1,13 +1,32 @@
 Basics
 SQL, often pronounced "see-quell", stands for Structured Query Langauge and is the language used to query relational databases. Although you may have never actually worked with a relational database, you are probably already very familiar with their structure and concepts, likely through working with spreadsheet programs like Excel. To review, here are some of the basic ideas.
-Data are organized into tables, like spreadsheets using the Excel analogy.
-Tables consist of named columns and zero or more rows
+A relational database is a database that organizes information into one or more tables. 
+Tables consist of named columns and zero or more rows. Tables are sometimes refered to as relations. 
 Columns contain a data type (integer, float, string, etc...)
-Rows may be indexed by a primary key which is a column, or a set of columns, used to uniquely identify each row.
+A row is a single record in the table. Rows may be indexed by a primary key which is a column, or a set of columns, used to uniquely identify each row.
+
+SQL Statements:
+      A statement is text that the database recogmizes as a valid command. Statements always end with a semi-colon (;).
+      For example:
+            CREATE TABLE table_name (
+                  column_1 data_type, 
+                  column_2 data_type, 
+                  column_3 data_type
+            );
+            
+            is a statment. This particular statment creates a new table in the database. For instance:
+            
+            CREATE TABLE celebs (
+                  id INTEGER, 
+                  name TEXT, 
+                  age INTEGER);
+                  
+            creates a new table named "celebs" with "id" as its first column with data type "INTEGER", "name" as the second 
+            column with "TEXT" as the data type, and "age" as the third column with data type INTEGER
 
 
 
-Import some data
+Import a csv file: 
 Before getting into writing queries, we first need to load some data. We're going to use the mtcars dataset that is often used in R and Python examples. If you need a copy of the .csv, it can be downloaded here, and it may be a good idea to familiarize yourself with the data a bit before proceeding. Also, be sure that all columns have a name. Once you have the data, put it in the same directory as this notebook. Now open up a command prompt in your OS, navigate to the directory containing the data, and run the command sqlite3. You should now see a sqlite3> indicating that the server is running and ready for commands. Now enter the following into the sqlite3 console.
 
       .mode csv
@@ -17,9 +36,12 @@ Now lets select 10 columns from the dataset mtcars:
 
       SELECT * FROM mtcars LIMIT 10; 
       
-   The * is the "wildcard" character and can be read as "all" in this context. 
-   FROM species which table (mtcars) we are slecting from
-   LIMIT allows you to specify the number of rows you want to include.
+   -The * is the "wildcard" character and can be read as "all" in this context. It allowsi us to select every column in a
+    table without having to specify each column
+  
+   -FROM species which table (mtcars) we are slecting from
+   
+   -LIMIT allows you to specify the number of rows you want to include.
    In english the statement reads, "select all columns from table mtcars limited to 10 rows."
    
    
