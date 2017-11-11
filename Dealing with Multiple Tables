@@ -1,0 +1,9 @@
+In this tutorial we will learn how to manipulate and extract data from multiple tables in SQL. 
+
+
+	Let's say we currently have only one table in our database called "albums." In order to create a another one we will us the 	following code:
+
+				CREATE TABLE artists(id INTEGER PRIMARY KEY, name TEXT);
+				
+		This creates a table named "artists" with two columns, "id" and "name." Let us assume it is populated with 7 rows of
+		various artists names and id's 1-7. 
