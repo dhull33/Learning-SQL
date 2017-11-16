@@ -6,4 +6,4 @@ In this tutorial we will learn how to manipulate and extract data from multiple 
 				CREATE TABLE artists(id INTEGER PRIMARY KEY, name TEXT);
 				
 		This creates a table named "artists" with two columns, "id" and "name." Let us assume it is populated with 7 rows of
-		various artists names and id's 1-7. 
+		various artists names and id's 1-7. kytyp
